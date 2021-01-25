@@ -12,9 +12,26 @@ export default new Vuex.Store({
       'animal welfare',
       'housing',
       'education'
+    ],
+    todos: [
+      { id: 1, text: '...', done: true },
+      { id: 2, text: '....', done: false },
+      { id: 3, text: '...', done: true },
+      { id: 4, text: '....', done: false }
     ]
   },
   mutations: {},
   actions: {},
+  getters: {
+    catLength: state => {
+      return state.categories.length
+    },
+    doneTodos: state => {
+      return state.todos.filter(todo => todo.done)
+    },
+    activeTodosCount: state => {
+      return state.todos.filter(todo => !todo.done).length
+    }
+  },
   modules: {}
 })

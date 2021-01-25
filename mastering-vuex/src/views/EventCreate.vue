@@ -3,7 +3,7 @@
     <h1>Create an Event, {{ user.name }}</h1>
     <p>created by, {{ user.id }}</p>
     <ul>
-      <li v-for="cat in categories" :key="cat">{{ cat }}</li>
+      <li v-for="cat in categories" :key="cat">{{ cat }},{{ catLength }}</li>
     </ul>
   </div>
 </template>
@@ -11,10 +11,12 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-  computed: mapState({
-    user: 'user',
-    categories: 'categories'
-  })
+  computed: {
+    catLength () {
+      return this.$store.getters.catLength
+    },
+    ...mapState(['user', 'categories'])
+  }
 }
 </script>
 
